@@ -1,25 +1,15 @@
-package com.facens.AC2.Domain.Entity;
+package com.facens.AC2.Presentation.Dto.Curso;
 
 import com.facens.AC2.Domain.Enum.Plano;
 
-public class Curso {
+public class CreateCursoDto {
 
-    private long id;
     private String nome;
     private Plano plano;
 
-    public Curso(long id, String nome, Plano plano) {
-        this.id = id;
+    public CreateCursoDto(String nome, Plano plano) {
         this.nome = nome;
         this.plano = plano;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getNome() {
