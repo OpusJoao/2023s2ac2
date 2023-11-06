@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/aluno")
 public class AlunoController {
     private final ListAllAlunos listAllAlunos;
     private final CreateAluno createAluno;
