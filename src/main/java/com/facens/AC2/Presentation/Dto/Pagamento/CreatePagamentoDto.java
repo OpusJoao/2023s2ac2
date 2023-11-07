@@ -1,30 +1,21 @@
-package com.facens.AC2.Domain.Entity;
+package com.facens.AC2.Presentation.Dto.Pagamento;
 
+import com.facens.AC2.Domain.Entity.Aluno;
 import com.facens.AC2.Domain.Enum.Plano;
 import com.facens.AC2.Domain.Enum.StatusPagamento;
 
-public class Pagamento {
+public class CreatePagamentoDto {
 
-    private long id;
     private long aluno;
     private float valor;
     private StatusPagamento statusPagamento;
     private Plano produto;
 
-    public Pagamento(long id, long aluno, float valor, StatusPagamento statusPagamento, Plano produto) {
-        this.id = id;
+    public CreatePagamentoDto(long aluno, float valor, StatusPagamento statusPagamento, Plano produto) {
         this.aluno = aluno;
         this.valor = valor;
         this.statusPagamento = statusPagamento;
         this.produto = produto;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public long getAluno() {
@@ -59,11 +50,4 @@ public class Pagamento {
         this.produto = produto;
     }
 
-//    public boolean confirmarPagamento() {
-//        if(this.produto != null && this.statusPagamento == StatusPagamento.PAGO) {
-//            this.aluno.setPlano(Plano.BASICO);
-//            return true;
-//        }
-//        return false;
-//    }
 }

@@ -17,6 +17,16 @@ public class AlunoRepositoryImpFalso implements AlunoRepository {
     }
 
     @Override
+    public Aluno getById(long id) {
+        for (Aluno aluno : this.alunoDb) {
+            if (aluno.getId() == id) {
+                return aluno;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public Aluno create(Aluno aluno) {
         aluno.setId(this.getLastId() + 1);
         this.alunoDb.add(aluno);

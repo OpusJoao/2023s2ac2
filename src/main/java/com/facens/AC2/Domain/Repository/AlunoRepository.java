@@ -8,6 +8,7 @@ import java.util.List;
 @Repository
 public interface AlunoRepository {
     List<Aluno> getAll();
+    Aluno getById(long id);
     Aluno create(Aluno aluno);
 
 }
