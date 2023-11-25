@@ -15,6 +15,8 @@ RUN apt-get update && \
     docker.io \
     && rm -rf /var/lib/apt/lists/*
 
+RUN sudo groupadd docker
+RUN sudo usermod -aG docker $USER
 RUN newgrp docker
 
 # Download and install the install-plugins.sh script
