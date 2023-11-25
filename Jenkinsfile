@@ -10,8 +10,8 @@ pipeline {
         // Especifique as variáveis de ambiente necessárias para autenticação no Docker Hub
         DOCKER_HUB_USERNAME = credentials('dockerhub-username')
         DOCKER_HUB_PASSWORD = credentials('dockerhub-password')
-        DOCKER_HUB_EMAIL = 'projetos.joao236@gmail.com'
-        DOCKER_REPO_NAME = 'joaoferreiradev/2023s2ac2'
+        DOCKER_HUB_EMAIL = '200820@facens.br'
+        DOCKER_REPO_NAME = 'joaoferreiradevfacens/2023s2ac2'
         DOCKER_IMAGE_TAG = 'latest'
     }
 
