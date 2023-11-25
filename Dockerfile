@@ -30,6 +30,8 @@ ENV PATH $PATH:$JAVA_HOME/bin
 # Build the project
 RUN gradle build
 
+RUN gradle jacocoTestReport
+
 # Expose the port that your application will run on
 EXPOSE 8080
 
