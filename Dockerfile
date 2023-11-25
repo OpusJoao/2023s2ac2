@@ -12,10 +12,10 @@ COPY ./ /app/src
 # Download and install Gradle
 RUN apt-get update && \
     apt-get install -y curl unzip && \
-    curl -L https://services.gradle.org/distributions/gradle-7.3-bin.zip -o gradle.zip && \
+    curl -L https://services.gradle.org/distributions/gradle-7.4-bin.zip -o gradle.zip && \
     unzip gradle.zip && \
     rm gradle.zip && \
-    mv gradle-7.3 /usr/local/gradle && \
+    mv gradle-7.4 /usr/local/gradle && \
     ln -s /usr/local/gradle/bin/gradle /usr/bin/gradle && \
     apt-get remove -y curl unzip && \
     apt-get clean && \
