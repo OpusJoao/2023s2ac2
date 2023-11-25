@@ -1,20 +1,25 @@
 pipeline {
     agent any
     
+    tools {
+        // Define o nome da ferramenta Gradle configurada no Jenkins
+        gradle 'NomeDaSuaFerramentaGradle'
+    }
+
     stages {
         stage('Build') {
             steps {
                 script {
-                    def mvnHome = tool 'Maven'
-                    sh "${mvnHome}/bin/mvn clean install"
+                    // Executa a tarefa de build com o Gradle
+                    sh "gradle build"
                 }
             }
         }
         stage('Test') {
             steps {
                 script {
-                    def mvnHome = tool 'Maven'
-                    sh "${mvnHome}/bin/mvn test"
+                    // Executa a tarefa de teste com o Gradle
+                    sh "gradle test"
                 }
             }
         }
