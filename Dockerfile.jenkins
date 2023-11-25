@@ -14,8 +14,12 @@ RUN apt-get update && \
     docker.io \
     && rm -rf /var/lib/apt/lists/*
 
+# Download and install the install-plugins.sh script
+RUN curl -fsSL https://raw.githubusercontent.com/jenkinsci/docker/master/install-plugins.sh -o /usr/local/bin/install-plugins.sh && \
+    chmod +x /usr/local/bin/install-plugins.sh
+
 # Install recommended plugins for Jenkins
-RUN /usr/local/bin/install-plugins.sh \
+RUN jenkins-plugin-cli --plugins \
     workflow-aggregator \
     git \
     github \
