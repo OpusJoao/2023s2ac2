@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy the Gradle files (build.gradle, settings.gradle, etc.) and the source code
 COPY build.gradle settings.gradle gradlew /app/
 COPY gradle /app/gradle
-COPY src /app/src
+COPY ./ /app/src
 
 # Download and install Gradle
 RUN apt-get update && \
