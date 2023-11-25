@@ -23,9 +23,7 @@ pipeline {
                     sh "gradle build"
                     
                     // Constrói a imagem Docker
-                    sh "systemctl start docker"
-                    sh "docker ps"
-                    sh "docker build -t ${DOCKER_REPO_NAME}:${DOCKER_IMAGE_TAG} ."
+                    sh "sudo docker build -t ${DOCKER_REPO_NAME}:${DOCKER_IMAGE_TAG} ."
                 }
             }
         }
