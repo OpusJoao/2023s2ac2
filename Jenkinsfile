@@ -23,7 +23,7 @@ pipeline {
                     sh "gradle build"
                     
                     // Constrói a imagem Docker
-                    sh "docker build -t ${DOCKER_REPO_NAME}:${DOCKER_IMAGE_TAG} ."
+                    sh "sudo docker build -t ${DOCKER_REPO_NAME}:${DOCKER_IMAGE_TAG} ."
                 }
             }
         }
@@ -40,11 +40,11 @@ pipeline {
                 script {
                     // Faz login no Docker Hub
                     withCredentials([usernamePassword(credentialsId: 'sua-credencial-do-dockerhub-id', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USERNAME')]) {
-                        sh "docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}"
+                        sh "sudo docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}"
                     }
 
                     // Envia a imagem Docker para o Docker Hub
-                    sh "docker push ${DOCKER_REPO_NAME}:${DOCKER_IMAGE_TAG}"
+                    sh "sudo docker push ${DOCKER_REPO_NAME}:${DOCKER_IMAGE_TAG}"
                 }
             }
         }
