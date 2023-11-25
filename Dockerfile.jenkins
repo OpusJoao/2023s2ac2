@@ -11,6 +11,7 @@ RUN apt-get update && \
     unzip \
     git \
     maven \
+    docker.io \
     && rm -rf /var/lib/apt/lists/*
 
 # Install recommended plugins for Jenkins
@@ -23,6 +24,7 @@ RUN /usr/local/bin/install-plugins.sh \
 
 # Switch back to the Jenkins user
 USER jenkins
+
 
 EXPOSE 8080
 EXPOSE 50000
