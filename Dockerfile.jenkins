@@ -1,36 +1,20 @@
-# Use the official Jenkins base image
-FROM jenkins/jenkins:lts
-
-# Switch to root user to install additional software
+FROM jenkins/jenkins:2.426.1-jdk17
 USER root
+RUN apt-get update && apt-get install -y lsb-release sudo
 
-# Install necessary tools and dependencies
-RUN apt-get update && \
-    apt-get install -y \
-    sudo \
-    curl \
-    unzip \
-    git \
-    maven \
-    docker.io \
-    && rm -rf /var/lib/apt/lists/*
+RUN curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
+  https://download.docker.com/linux/debian/gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) \
+  signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
+  https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
+RUN apt-get update && apt-get install -y docker-ce-cli
 
-RUN newgrp docker
+RUN sudo groupadd docker
+RUN sudo gpasswd -a jenkins docker
 
-# Download and install the install-plugins.sh script
-RUN curl -fsSL https://raw.githubusercontent.com/jenkinsci/docker/master/install-plugins.sh -o /usr/local/bin/install-plugins.sh && \
-    chmod +x /usr/local/bin/install-plugins.sh
-
-# Install recommended plugins for Jenkins
-RUN jenkins-plugin-cli --plugins \
-    workflow-aggregator \
-    git \
-    github \
-    docker-workflow \
-    blueocean
-
-# Switch back to the Jenkins user
 USER jenkins
+RUN jenkins-plugin-cli --plugins "blueocean docker-workflow"
 
 
 EXPOSE 8080
