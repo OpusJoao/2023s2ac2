@@ -3,7 +3,7 @@ pipeline {
     
     tools {
         // Define o nome da ferramenta Gradle configurada no Jenkins
-        gradle 'NomeDaSuaFerramentaGradle'
+        gradle 'gradle'
     }
 
     stages {
