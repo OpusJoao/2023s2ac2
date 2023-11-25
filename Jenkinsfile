@@ -21,7 +21,6 @@ pipeline {
                 script {
                     // Executa a tarefa de build com o Gradle
                     sh "gradle build"
-                    sh "newgrp docker"
                     
                     // Constrói a imagem Docker
                     sh "docker build -t ${DOCKER_REPO_NAME}:${DOCKER_IMAGE_TAG} ."
