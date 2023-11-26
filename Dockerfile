@@ -27,6 +27,8 @@ ENV PATH $PATH:$GRADLE_HOME/bin
 ENV JAVA_HOME /usr/local/openjdk-17
 ENV PATH $PATH:$JAVA_HOME/bin
 
+RUN apt update && apt install curl -y
+
 # Build the project
 RUN gradle build
 
