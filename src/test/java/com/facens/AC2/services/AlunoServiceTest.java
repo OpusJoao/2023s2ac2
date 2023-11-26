@@ -1,9 +1,17 @@
-package com.facens.AC2.Application.UseCase;
+package com.facens.AC2.services;
 
 import com.facens.AC2.Application.UseCase.Administrador.CreateAdministrador;
 import com.facens.AC2.Application.UseCase.Administrador.ListAllAdministradores;
+import com.facens.AC2.Application.UseCase.Aluno.CreateAluno;
+import com.facens.AC2.Application.UseCase.Aluno.ListAllAlunos;
+import com.facens.AC2.Domain.Entity.Aluno;
+import com.facens.AC2.Domain.Enum.Plano;
+import com.facens.AC2.Domain.Repository.AlunoRepository;
 import com.facens.AC2.Presentation.Dto.Administrador.CreateAdministradorDto;
 import com.facens.AC2.Presentation.Dto.Administrador.ListAdministradorDto;
+import com.facens.AC2.Presentation.Dto.Aluno.CreateAlunoDto;
+import com.facens.AC2.Presentation.Dto.Aluno.ListAlunoDto;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,6 +26,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 public class AlunoServiceTest {
@@ -32,14 +42,10 @@ public class AlunoServiceTest {
 
     @Test
     public void testCreate() {
-        CreateAlunoDto createAlunoDto = new CreateAlunoDto();
-        createAlunoDto.setNome("John Doe");
-        createAlunoDto.setEmail("johndoe@example.com");
+        CreateAlunoDto createAlunoDto = new CreateAlunoDto("John Doe", "johndoe@example.com", "John Doe" , Plano.BASICO);
 
-        Aluno aluno = new Aluno();
-        aluno.setNome("John Doe");
-        aluno.setEmail("johndoe@example.com");
-
+        Aluno aluno = new Aluno("John Doe", "johndoe@example.com", "John Doe" , Plano.BASICO, null );
+       
         when(alunoRepository.create(any(Aluno.class))).thenReturn(aluno);
 
         Aluno result = createAluno.create(createAlunoDto);
@@ -50,13 +56,9 @@ public class AlunoServiceTest {
 
     @Test
     public void testList() {
-        Aluno aluno1 = new Aluno();
-        aluno1.setNome("John Doe");
-        aluno1.setEmail("johndoe@example.com");
+        Aluno aluno1 = new Aluno("John Doe", "johndoe@example.com", "John Doe" , Plano.BASICO, null);
 
-        Aluno aluno2 = new Aluno();
-        aluno2.setNome("Jane Doe");
-        aluno2.setEmail("janedoe@example.com");
+        Aluno aluno2 = new Aluno("John Doe", "johndoe@example.com", "John Doe" , Plano.BASICO, null);
 
         List<Aluno> alunos = new ArrayList<>();
         alunos.add(aluno1);

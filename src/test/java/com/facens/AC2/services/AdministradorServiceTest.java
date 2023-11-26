@@ -1,23 +1,20 @@
-package com.facens.AC2.Application.UseCase;
+package com.facens.AC2.services;
 
 import com.facens.AC2.Application.UseCase.Administrador.CreateAdministrador;
 import com.facens.AC2.Application.UseCase.Administrador.ListAllAdministradores;
+import com.facens.AC2.Domain.Entity.Administrador;
+import com.facens.AC2.Domain.Repository.AdministradorRepository;
 import com.facens.AC2.Presentation.Dto.Administrador.CreateAdministradorDto;
 import com.facens.AC2.Presentation.Dto.Administrador.ListAdministradorDto;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 public class AdministradorServiceTest {
@@ -32,15 +29,11 @@ public class AdministradorServiceTest {
 
     @Test
     public void testCreate() {
-        CreateAdministradorDto createAdministradorDto = new CreateAdministradorDto();
-        createAdministradorDto.setNome("John Doe");
-        createAdministradorDto.setEmail("johndoe@example.com");
+        CreateAdministradorDto createAdministradorDto = new CreateAdministradorDto(1, "John Doe", "johndoe@example.com");
 
-        Administrador administrador = new Administrador();
-        administrador.setNome("John Doe");
-        administrador.setEmail("johndoe@example.com");
+        Administrador administrador = new Administrador(1, "John Doe", "johndoe@example.com", "123");
 
-        when(administradorRepository.create(any(Administrador.class))).thenReturn(administrador);
+        when(administradorRepository.create(administrador)).thenReturn(administrador);
 
         CreateAdministradorDto result = createAdministrador.create(createAdministradorDto);
 
@@ -50,13 +43,9 @@ public class AdministradorServiceTest {
 
     @Test
     public void testList() {
-        Administrador administrador1 = new Administrador();
-        administrador1.setNome("John Doe");
-        administrador1.setEmail("johndoe@example.com");
+        Administrador administrador1 = new Administrador(1, "John Doe", "johndoe@example.com", null);
 
-        Administrador administrador2 = new Administrador();
-        administrador2.setNome("Jane Doe");
-        administrador2.setEmail("janedoe@example.com");
+        Administrador administrador2 = new Administrador(2, "John Doe", "johndoe@example.com", null);
 
         List<Administrador> administradores = new ArrayList<>();
         administradores.add(administrador1);
