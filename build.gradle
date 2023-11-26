@@ -42,5 +42,5 @@ jacocoTestReport {
 }
 
 springBoot {
-  mainClass = 'com.facens.Ac2Application'
+  mainClass = 'com.facens.AC2.Ac2Application'
 }
