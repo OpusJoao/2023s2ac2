@@ -10,7 +10,7 @@ services:
     - db-volume:/var/lib/postgresql/data
 
   api_stage:
-    image: lelesd2m2s10/praticando-api
+    image: joaoferreiradevfacens/2023s2ac2
     environment:
       DB_HOST: database_stage
     ports:
