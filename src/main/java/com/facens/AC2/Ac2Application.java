@@ -1,5 +1,6 @@
 package com.facens.AC2;
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +12,9 @@ import org.springframework.context.annotation.Bean;
 public class Ac2Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Ac2Application.class, args);
+		SpringApplication app = new SpringApplication(Ac2Application.class);
+		app.setDefaultProperties(Collections.singletonMap("server.port", "9090"));
+		app.run(args);
 	}
 
 	@Bean
