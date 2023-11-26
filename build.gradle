@@ -40,7 +40,3 @@ test {
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
 }
-
-springBoot {
-  mainClass = 'com.facens.AC2.Ac2Application'
-}
